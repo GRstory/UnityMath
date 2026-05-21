@@ -9,7 +9,7 @@ public class Chapter1 : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Vector3 mouseScreenPosition = Camera.main.WorldToScreenPoint(Input.mousePosition);
+            Vector3 mouseScreenPosition = Input.mousePosition;
             mouseScreenPosition.z = 0f;
 
             Vector3 selfScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
@@ -19,11 +19,13 @@ public class Chapter1 : MonoBehaviour
             float radian = Mathf.Atan2(direction.y, direction.x);
 
             this.transform.eulerAngles = new Vector3(0f, 0f, radian * Mathf.Rad2Deg);
+
+            Debug.Log($"Mouse Position: {mouseScreenPosition}, Self Position: {selfScreenPosition}, Direction: {direction}, Radian: {radian}");
         }
 
         if(Input.GetMouseButtonDown(1))
         {
-            Instantiate(_spherePrefab, Camera.main.WorldToScreenPoint(Input.mousePosition), Quaternion.identity);
+            Instantiate(_spherePrefab, Input.mousePosition, Quaternion.identity);
         }
     }
 }
